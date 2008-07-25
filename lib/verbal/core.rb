@@ -106,7 +106,9 @@ module Verbal
       return NUMBERS[value] if value < 10
       return NUMBERS[value] if (11..19).include?(value)
       return NUMBERS[(value / 10) * 10] if (value % 10) == 0
-      return "#{NUMBERS[(value / 10) * 10]} #{((value % 10) == 2) ? NUMBERS[2][gender] : NUMBERS[value % 10][0]}"
+      return NUMBERS[(value / 10) * 10] + ' ' + NUMBERS[1][0] if (value % 10) == 1
+      return NUMBERS[(value / 10) * 10] + ' ' + NUMBERS[2][gender] if (value % 10) == 2
+      return NUMBERS[(value / 10) * 10] + ' ' + NUMBERS[value % 10]
      end
 
     module_function :to_words, :variation, :exponent, :process_number, :process_thousands, :process_hundreds, :process_tens
