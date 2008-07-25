@@ -16,7 +16,7 @@ module Verbal
 
     NUMBERS = {
       0 => 'zero',
-      1 => 'jeden',
+      1 => ['jeden', 'jedna'],
       2 => ['dwa', 'dwie'],
       3 => 'trzy',
       4 => 'cztery',
@@ -75,7 +75,7 @@ module Verbal
       ((value.to_s.length - 1) / 3) * 3
     end
 
-    def process_number(value, gender)
+    def process_number(value, gender = 0)
       value < 100 ? process_tens(value, gender) : process_hundreds(value, gender)
     end
 
@@ -92,26 +92,22 @@ module Verbal
       return readable_slices.sort.reverse.delete_if {|k, v| v.zero?}
     end
 
-    def process_hundreds(value, gender)
+    def process_hundreds(value, gender = 0)
     raise 'value is in incorrect range' unless (100..999).include?(value)
       if (value % 100) == 0
         return NUMBERS[value]
       else
-        return NUMBERS[(value / 100) * 100] + ' ' + process_tens(value % 100, gender)
+        return "#{NUMBERS[(value / 100) * 100]} #{process_tens(value % 100, gender)}"
       end
     end
 
-    def process_tens(value, gender)
-      raise 'value is in incorrect range' unless (1..99).include?(value)
-      return NUMBERS[value][gender] if value == 2
-      return NUMBERS[value] if value < 9
+    def process_tens(value, gender = 0)
+      return NUMBERS[value][gender] if (1..2).include?(value)
+      return NUMBERS[value] if value < 10
+      return NUMBERS[value] if (11..19).include?(value)
       return NUMBERS[(value / 10) * 10] if (value % 10) == 0
-      if (11..19).include?(value)
-      return NUMBERS[value]
-      else
-        return NUMBERS[(value / 10) * 10] + ' ' + NUMBERS[value % 10]
-      end
-    end
+      return "#{NUMBERS[(value / 10) * 10]} #{((value % 10) == 2) ? NUMBERS[2][gender] : NUMBERS[value % 10][0]}"
+     end
 
     module_function :to_words, :variation, :exponent, :process_number, :process_thousands, :process_hundreds, :process_tens
 

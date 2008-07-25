@@ -1,3 +1,13 @@
+== INSTALL:
+
+script/plugin install git://github.com/tomaszmazur/verbal.git
+
+OR
+ 
+$ sudo gem sources -a http://gems.github.com
+$ sudo gem install tomaszmazur-verbal
+
+
 == USAGE:
 
 Verbal::Numbers.to_words(123_456_789)
