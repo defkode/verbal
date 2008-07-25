@@ -2,6 +2,7 @@ module Verbal
 
   module Numbers
 
+
     EXPONENT = {
       0 => ['', '', ''],
       3 => ['tysiac','tysiace','tysiecy'],
@@ -55,12 +56,13 @@ module Verbal
 
     def to_words(value, gender = 0)
       raise 'value must be an integer' unless value.is_a?(Integer)
+      return NUMBERS[0] if value == 0
       @in_words = ''
       process_thousands(value).each do |e, v|
         # jesli 1_000 to 'tysiac' zamiast 'jeden tysiac'
         @in_words << "#{(e != 0 && v == 1)? '': process_number(v, gender)} #{EXPONENT[e][variation(v)]} "
       end
-      return @in_words.strip
+      return @in_words.strip.squeeze
     end
 
     def variation(value)
@@ -87,7 +89,7 @@ module Verbal
         e -= 3
       end
       readable_slices << [0, value % 10**3]
-      return readable_slices.sort.reverse.delete_if {|k, v| v.zero? && k !=0 }
+      return readable_slices.sort.reverse.delete_if {|k, v| v.zero?}
     end
 
     def process_hundreds(value, gender)
@@ -100,7 +102,7 @@ module Verbal
     end
 
     def process_tens(value, gender)
-      raise 'value is in incorrect range' unless (0..99).include?(value)
+      raise 'value is in incorrect range' unless (1..99).include?(value)
       return NUMBERS[value][gender] if value == 2
       return NUMBERS[value] if value < 9
       return NUMBERS[(value / 10) * 10] if (value % 10) == 0

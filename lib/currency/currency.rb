@@ -1,6 +1,7 @@
 module Verbal
 
   module Currency
+
     # Grammatical Gender
     # http://en.wikipedia.org/wiki/Grammatical_gender#Masculine.2C_feminine.2C_and_neuter
     # 0 - neuter or masculine, 1 - feminine
@@ -20,6 +21,8 @@ module Verbal
 
     def to_words(value, symbol = 'PLN')
       raise 'must be an integer' unless value.is_a?(Integer)
+      raise 'currency is not in the list' unless CURRENCIES.include?(symbol)
+
       "#{Verbal::Numbers.to_words(value / 100, CURRENCIES[symbol][2][0])} #{CURRENCIES[symbol][0][Verbal::Numbers.variation(value / 100)]}" + " " + "#{Verbal::Numbers.to_words(value % 100, CURRENCIES[symbol][2][1])} #{CURRENCIES[symbol][1][Verbal::Numbers.variation(value % 100)]}"
     end
 
