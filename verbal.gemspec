@@ -8,14 +8,7 @@ Gem::Specification.new do |s|
   s.description = "Verbal - library for converting units (time, currency, weight, height) to Polish words. More languages to come"
   s.has_rdoc = false
   s.authors  = ["Tomasz Mazur"]
-  s.files    = ["History.txt",
-                "Manifest.txt",
-		"README.txt",
-		"verbal.gemspec",
-		"lib/currency/currency.rb",
-		"lib/verbal/core.rb",
-		"lib/verbal.rb"]
+  s.files    = ["History.txt", "Manifest.txt", "README.txt", "verbal.gemspec", "lib/currency/currency.rb", "lib/verbal/core.rb", "lib/verbal.rb"]
   s.rdoc_options = ["--main", "README.txt"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "README.txt"]
-  s.add_dependency("mime-types", ["> 0.0.0"])
 end
