@@ -1,0 +1,7 @@
+History.txt
+Manifest.txt
+README.txt
+verbal.gemspec
+lib/verbal.rb
+lib/verbal/core.rb
+lib/currency/currency.rb
