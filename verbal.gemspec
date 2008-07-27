@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name     = "verbal"
-  s.version  = "0.1"
+  s.version  = "0.2"
   s.date     = "2008-07-25"
   s.summary  = "Converts numbers, currency and other units to Polish (more to come)"
   s.email    = "tomek@trix.pl"
