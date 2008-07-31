@@ -2,11 +2,6 @@ module Verbal
 
   module Numbers
 
-# Verbal::Currency.to_words(1000001_00, 'CZK')
-# => "milion jedna koron czeskich zero halerzy"
-# pomyslec nad przekazywaniem exponenta -> wowczas szloby reagowac ladnie na 0,1
-# zlikwidowac process_number
-
     EXPONENT = {
       0 => ['', '', ''],
       3 => ['tysiąc','tysiące','tysięcy'],
@@ -20,8 +15,8 @@ module Verbal
 
     NUMBERS = {
       0 => 'zero',
-      1 => ['jeden', 'jedna'],
-      2 => ['dwa', 'dwie'],
+      1 => ['jeden', 'jedna', 'jedno'],
+      2 => ['dwa', 'dwie', 'dwa'],
       3 => 'trzy',
       4 => 'cztery',
       5 => 'pięć',
@@ -108,7 +103,7 @@ module Verbal
 
     def process_tens(value, gender = 0)
       return NUMBERS[value][gender] if value == 2
-      return NUMBERS[value][0] if value == 1 # brzydkieo obejscie - lepiej znac exponent
+      return NUMBERS[value][0] if value == 1 # FIXME: it should be dependent on exponent value
       return NUMBERS[value] if value < 10
       return NUMBERS[value] if (11..19).include?(value)
       return NUMBERS[(value / 10) * 10] if (value % 10) == 0
