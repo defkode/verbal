@@ -1,6 +1,3 @@
-== CHANGELOG:
+=== 1.0.0 / 2008-08-01
 
-25/07/2008:  currency_in_words now recognizes grammatical gender of currency
-             '2 PLN' => dwa złote, but '2 SKK' => dwie korony słowackie (not 'dwa korony słowackie')
-25/07/2008:  Changed squish method to strip (as squish is specific for Rails)
-             Added TODO tasks
+Verbal is now a gem!

@@ -1,6 +1,6 @@
 module Verbal
   module English
-  # American English
+
     module Numbers
 
       EXPONENT_EN = {
@@ -45,34 +45,43 @@ module Verbal
         19 => 'nineteen'
       }
 
-      def to_words(value, gender = 0)
+      def to_words(value)
         raise 'value must be an integer' unless value.is_a?(Integer)
+        @exponent            = Verbal::Core::exponent(value)
+        @extracted_exponents = Verbal::Core::process_thousands(value)
         @in_words = ''
-        Verbal::Core.process_thousands(value).each do |e, v|
-          @in_words << "#{v < 100 ? process_tens(v, e) : process_hundreds(v, e)} #{EXPONENT_EN[e]} "
+        @extracted_exponents.each do |e, v|
+          @in_words << "#{process_hundreds(v, e, @exponent)} #{EXPONENT_EN[e]} "
         end
         return @in_words.strip.squeeze(' ')
       end
 
-      def process_hundreds(value, exponent)
-      raise IncorrectInputValue unless (100..999).include?(value)
-      hundreds_count = value / 100
-        if (value % 100) == 0
-          return NUMBERS_EN[hundreds_count] + ' hundred'
+      def process_hundreds(value, current_exponent, value_exponent)
+      raise 'value should be in range: 0.999' unless (0..999).include?(value)
+        if value > 100
+
+          hundreds_count = value / 100
+          if value % 100 == 0
+            return NUMBERS_EN[hundreds_count] + ' hundred'
+          else
+            prefix = "#{(value_exponent != 0 && current_exponent == 0) ? ' and ': ''}"
+            return NUMBERS_EN[hundreds_count] + ' hundred  ' + process_tens(value % 100, prefix)
+          end
+
         else
-          return NUMBERS_EN[hundreds_count] + ' hundred  ' + process_tens(value % 100, exponent)
+          prefix = "#{(value_exponent != 0 && current_exponent == 0) ? ' and ': ''}"
+          return process_tens(value % 100, prefix)
         end
       end
 
-      def process_tens(value, exponent)
-        raise IncorrectInputValue unless (0..99).include?(value)
-        and_string = exponent > 0 ? '' : 'and '
-        return and_string + NUMBERS_EN[value] if value < 9
-        return and_string + NUMBERS_EN[(value / 10) * 10] if (value % 10) == 0
+      def process_tens(value, prefix)
+        raise 'value should be in range: 0..99' unless (0..99).include?(value)
+        return prefix + NUMBERS_EN[value] if value < 9
+        return prefix + NUMBERS_EN[(value / 10) * 10] if (value % 10) == 0
         if (11..19).include?(value)
-          return and_string + NUMBERS_EN[value]
+          return prefix + NUMBERS_EN[value]
         else
-          return and_string + NUMBERS_EN[(value / 10) * 10] + '-' + NUMBERS_EN[value % 10]
+          return prefix + NUMBERS_EN[(value / 10) * 10] + '-' + NUMBERS_EN[value % 10]
         end
       end
 
