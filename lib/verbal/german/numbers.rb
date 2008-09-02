@@ -53,7 +53,7 @@ module Verbal
           @in_words << if val < 100
             process_tens(val, exp)
           else
-            process_hundreds(val, exp) + EXPONENT_DE[e]
+            process_hundreds(val, exp) + EXPONENT_DE[exp]
           end
         end
         return @in_words.strip.squeeze('')
@@ -87,7 +87,7 @@ module Verbal
       end
 
       def process_thousands(value)
-        exp  = exponent(value)
+        exp  = Verbal::Core.exponent(value)
         readable_slices = []
         while exp > 0
           remainder ||= value
