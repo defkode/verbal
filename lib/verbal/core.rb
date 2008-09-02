@@ -1,4 +1,7 @@
 module Verbal
+  
+  VERSION = '1.0.0'
+
   module Core
 
     def exponent(value)

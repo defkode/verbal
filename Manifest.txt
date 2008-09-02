@@ -1,7 +1,14 @@
 History.txt
 Manifest.txt
 README.txt
-verbal.gemspec
+Rakefile
+bin/verbal
 lib/verbal.rb
 lib/verbal/core.rb
-lib/currency/currency.rb
+lib/verbal/english/numbers.rb
+lib/verbal/polish/currency.rb
+lib/verbal/polish/numbers.rb
+spec/spec_helper.rb
+spec/unit/currency.rb
+spec/unit/numbers.rb
+verbal.gemspec
