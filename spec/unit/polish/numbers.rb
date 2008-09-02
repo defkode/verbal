@@ -1,6 +1,6 @@
 require File.join(File.dirname(__FILE__), '..', 'spec_helper')
 
-describe Verbal::Numbers do
+describe Verbal::Polish::Numbers do
 
   it 'should return correct string' do
     Verbal::Polish::Numbers.to_words(0).should      == 'zero'

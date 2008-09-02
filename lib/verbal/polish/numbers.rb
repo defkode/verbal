@@ -53,6 +53,7 @@ module Verbal
         900 => 'dziewięćset'
       }
 
+      # TODO: why express gender with a number instead of a symbol to the outside world ? (:male, :female)
       def to_words(value, gender = 0)
         raise 'value must be an integer' unless value.is_a?(Integer)
         return NUMBERS[0] if value == 0

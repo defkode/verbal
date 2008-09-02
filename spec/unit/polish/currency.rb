@@ -1,6 +1,6 @@
 require File.join(File.dirname(__FILE__), '..', 'spec_helper')
 
-describe Verbal::Currency do
+describe Verbal::Polish::Currency do
 
   it 'should return correct string' do
     Verbal::Polish::Currency.to_words(0).should                   == 'zero złotych zero groszy'
