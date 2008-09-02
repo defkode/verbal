@@ -5,6 +5,7 @@ describe Verbal::German::Numbers do
   it 'should return correct string for numbers < 20' do
     Verbal::German::Numbers.to_words(0).should      == 'null'
     Verbal::German::Numbers.to_words(15).should     == 'fünfzehn'
+    Verbal::German::Numbers.to_words(20).should     == 'zwanzig'
   end
 
   it 'should return correct string for numbers < 100' do
