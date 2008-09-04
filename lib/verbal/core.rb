@@ -1,14 +1,21 @@
 module Verbal
   
-  VERSION = '1.0.0'
+  VERSION = '1.1.0'
 
   module Core
-
+    
+    # returns exponent of value in cubic interval
+    # 0 for 0-999, 3 for 1000-999999, 6 for 1_000_000-999_999_999 and so on ...
+     
     def exponent(value)
       ((value.to_s.length - 1) / 3) * 3
     end
 
 
+    # returns array of pairs (exponent and corresponding value), so number can be easily converted to words
+    # 1_512_999 => [[6, 1], [3, 512], [0,999]] 
+
+    
     def process_thousands(value)
       e  = exponent(value)
       readable_slices = []

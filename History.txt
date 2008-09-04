@@ -1,3 +1,7 @@
+=== 1.1.0 / 2008-09-04
+
+German support / Thanks to Soleone!
+
 === 1.0.0 / 2008-08-01
 
 Verbal is now a gem!
