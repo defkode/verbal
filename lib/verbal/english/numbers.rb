@@ -76,9 +76,12 @@ module Verbal
 
       def process_tens(value, prefix)
         raise 'value should be in range: 0..99' unless (0..99).include?(value)
-        return prefix + NUMBERS_EN[value] if value < 9
-        return prefix + NUMBERS_EN[(value / 10) * 10] if (value % 10) == 0
-        if (11..19).include?(value)
+        case value
+        when 0..9
+          return prefix + NUMBERS_EN[value]
+        when (value % 10) == 0
+          return prefix + NUMBERS_EN[(value / 10) * 10]
+        when 11..19
           return prefix + NUMBERS_EN[value]
         else
           return prefix + NUMBERS_EN[(value / 10) * 10] + '-' + NUMBERS_EN[value % 10]
