@@ -9,17 +9,15 @@
 
   - English *
   - Polish
+  - German (not fully implemented)
 
   NOTE: It's American English numbering system
   http://www.mazes.com/AmericanNumberingSystem.html
 
-== FEATURES/PROBLEMS:
 
+h2. SYNOPSIS:
 
-
-== SYNOPSIS:
-
-1) NUMBERS:
+# NUMBERS:
 
   Verbal::Polish::Numbers.to_words(123_456_789)
   => "sto dwadzieścia trzy miliony czterysta pięćdziesiąt sześć tysiecy siedemset osiemdziesiąt dziewięć"
@@ -27,26 +25,16 @@
   Verbal::English::Numbers.to_words(123_456_789)
   => "one hundred twenty-three million four hundred fifty-six thousand seven hundred and eighty-nine"
 
-  2) CURRENCIES:
+# CURRENCIES:
 
   Verbal::Polish::Currency.to_words(123_456_789_00, 'PLN')
   => "sto dwadzieścia trzy miliony czterysta pięćdziesiąt sześć tysiecy siedemset osiemdziesiąt dziewięć złotych zero groszy"
 
   No Support for Verbal::English::Currency yet... Anybody?
 
-== REQUIREMENTS:
+h2. REQUIREMENTS:
 
-
-
-== INSTALL:
-
-  sudo gem install verbal
-
-  or
-
-  script/plugin install git://github.com/tomaszmazur/verbal.git
-
-== LICENSE:
+h2. LICENSE:
 
 (The MIT License)
 
